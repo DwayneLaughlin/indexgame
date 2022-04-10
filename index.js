@@ -70,6 +70,7 @@ function animate(){
 
 animate();
 
+// event listener checking for certain keys being pressed. Switch cases set up for A, D, and W, respectively.
 addEventListener("keydown", ({keyCode}) => {
     console.log(keyCode)
     switch (keyCode){
@@ -84,7 +85,5 @@ addEventListener("keydown", ({keyCode}) => {
         case 87 : 
             console.log("up")
             break
-        case 32 :
-            console.log("space")
     }
 })
