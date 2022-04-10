@@ -38,9 +38,16 @@ class Player {
     update(){
         // draws rectangle
         this.draw()
-        // creates gravity for rectangle by updating it's position and increasing it's fall rate gradually in the animate function
-        this.velocity.y += gravity
-        this.position.y += this.velocity.y
+
+        // conditional checks to see if rectangle is on the bottom of canvas element. If it is not rectangle will fall. If it is rectanle will stop.
+        if (this.position.y + this.height + this.velocity.y <= canvas.height){
+         // creates gravity for rectangle by updating it's position and increasing it's fall rate gradually in the animate function
+         this.velocity.y += gravity
+         this.position.y += this.velocity.y
+        } else {
+            this.velocity = 0
+        }
+       
         
        
 
