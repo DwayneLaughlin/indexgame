@@ -45,7 +45,7 @@ class Player {
          this.velocity.y += gravity
          this.position.y += this.velocity.y
         } else {
-            this.velocity = 0
+            this.velocity.y = 0
         }
        
         
@@ -71,19 +71,19 @@ function animate(){
 animate();
 
 // event listener checking for certain keys being pressed. Switch cases set up for A, D, and W, respectively.
-addEventListener("keydown", ({keyCode}) => {
-    console.log(keyCode)
-    switch (keyCode){
-        case 65 : 
+addEventListener("keydown", ({ key }) => {
+    switch (key){
+        case 'a' : 
             console.log("left");
             break
 
-        case 68 :
+        case 'd' :
             console.log("right")
             break
 
-        case 87 : 
+        case 'w' : 
             console.log("up")
-            break
+            player.velocity.y -= 10
+            
     }
 })
