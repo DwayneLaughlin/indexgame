@@ -38,12 +38,14 @@ class Player {
     update(){
         // draws rectangle
         this.draw()
+        this.position.y += this.velocity.y
+        this.position.x += this.velocity.x
 
         // conditional checks to see if rectangle is on the bottom of canvas element. If it is not rectangle will fall. If it is rectanle will stop.
         if (this.position.y + this.height + this.velocity.y <= canvas.height){
          // creates gravity for rectangle by updating it's position and increasing it's fall rate gradually in the animate function
          this.velocity.y += gravity
-         this.position.y += this.velocity.y
+         
         } else {
             this.velocity.y = 0
         }
@@ -75,15 +77,36 @@ addEventListener("keydown", ({ key }) => {
     switch (key){
         case 'a' : 
             console.log("left");
+            player.velocity.x -= 10
             break
 
         case 'd' :
             console.log("right")
+            player.velocity.x += 10
             break
-
+        // jump is created by just decreasing the velocity
         case 'w' : 
             console.log("up")
             player.velocity.y -= 10
+            
+    }
+})
+
+addEventListener("keyup", ({ key }) => {
+    switch (key){
+        case 'a' : 
+            console.log("left");
+            player.velocity.x = 0
+            break
+
+        case 'd' :
+            console.log("right")
+            player.velocity.x = 0
+            break
+        // jump is created by just decreasing the velocity
+        case 'w' : 
+            console.log("up")
+            player.velocity.y = 0
             
     }
 })
