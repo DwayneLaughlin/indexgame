@@ -50,11 +50,33 @@ class Player {
   }
 }
 
+class Platform {
+  constructor() {
+    this.position = {
+      x: 400,
+      y: 300,
+    };
+    this.width = 200;
+    this.height = 20;
+  }
+  draw() {
+    context.fillStyle = 'green';
+    context.fillRect(
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
+    )
+    
+  }
+}
+
 // 'new' keyword does 3 things
 // 1. creates an empty object
 // 2. sets the value of 'this' to be the new empty object
 // 3. calls the constructor method
 const player = new Player();
+const platform = new Platform()
 
 // Sets default for left/right keys to be not pressed. This will allow us to set constant rate of speed later when they are pressed
 const keys = {
@@ -76,7 +98,15 @@ function animate() {
     player.velocity.x = 5;
   } else if (keys.left.pressed) {
     player.velocity.x = -5;
-  } else player.velocity.x = 0;
+  } else {player.velocity.x = 0};
+  platform.draw()
+
+//   conditional to check if players position (player.height + player.position.y) is higher than the top of the platform (platform.position.y). Also checks the right side of the player (player.position. + width) is greater than the platform. If all of this is true player should sit on platform and fall to bottom of canvas when not on platform
+  if(
+    player.position.y + player.height <= platform.position.y && player.position.y + player.height + player.velocity.y >= platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width)
+    {
+    player.velocity.y = 0
+    }
 }
 
 animate();
@@ -98,6 +128,9 @@ addEventListener("keydown", ({ key }) => {
       console.log("up");
       player.velocity.y -= 10;
   }
+
+
+
 });
 
 addEventListener("keyup", ({ key }) => {
